@@ -9,12 +9,12 @@
 }
 
 .box--large{
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
 }
 .box--medium{
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 90px;
 }
 .box--small{
     width: 60px;
@@ -25,13 +25,34 @@
 <script type="text/babel">
 const rootElement = document.getElementById('root');
 
-const props = {
-    className: "box box--small",
-    style: {paddingLeft: 20},
+function Box({style, size, className = '', ...rest}){
+    const sizeStyleClass = size? `box--${size}`:'';
+    return (
+        <div 
+        className={`box ${className} ${sizeStyleClass}`.trim()}
+        style={{paddingLeft: 20, ...style}}
+        {...rest}
+        />
+    )
 }
+
 const element = (
     <div>
-        <div {...props}>box</div>
+        <Box 
+        size="small"
+        style={{backgroundColor: 'lightblue'}}>
+            small box
+        </Box>
+        <Box 
+        size="medium"
+        style={{backgroundColor: 'pink'}}>
+            medium box
+        </Box>
+        <Box 
+        size="large"
+        style={{backgroundColor: 'orange'}}>
+            large box
+        </Box>
     </div>);
 
 ReactDOM.render(element, rootElement);
