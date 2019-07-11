@@ -8,13 +8,12 @@ const rootElement = document.getElementById('root');
 
 class Counter extends React.Component{
     state = {count: 0}
-    handleClick = this.handleClick.bind(this)
 
-    handleClick(){
+    handleClick = function(){
         this.setState(({count}) => ({
             count: count + 1,
         }))
-    }
+    }.bind(this)
 
     render(){
         return (
